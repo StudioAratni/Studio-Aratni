@@ -263,6 +263,7 @@ export default function App() {
           }`}
         >
           <div className="h-full flex flex-col px-8 pt-24 pb-12">
+
             {/* Close Button */}
             <div className="flex justify-end mb-16">
               <button
