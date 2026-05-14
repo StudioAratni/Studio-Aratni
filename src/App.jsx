@@ -1,27 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ArrowLeft, Send } from 'lucide-react';
-
-const InstagramIcon = ({ size = 16, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-);
-
-const LinkedinIcon = ({ size = 16, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
-
-const WhatsAppIcon = ({ size = 24, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
-);
+import { 
+  X, 
+  ArrowRight, 
+  ArrowLeft, 
+  Send, 
+  MoreHorizontal, 
+  Instagram, 
+  Linkedin, 
+  Mail,
+  ChevronRight
+} from 'lucide-react';
 
 const projectData = [
   {
@@ -43,37 +31,41 @@ const projectData = [
   {
     title: 'Amber Urban Pub',
     type: 'Commercial Project',
-    mainImage: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=90&w=1200',
+    location: 'Bangalore, India',
+    mainImage: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=1200',
     images: [
-      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=90&w=1600',
-      'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&q=90&w=1600',
+      'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&q=80&w=1200',
     ],
   },
   {
     title: 'Mureli House',
     type: 'Residential Project',
-    mainImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=90&w=1200',
+    location: 'Cochin, India',
+    mainImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200',
     images: [
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=90&w=1600',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=90&w=1600',
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
     ],
   },
   {
     title: 'Ridnyi House',
     type: 'Residential Project',
-    mainImage: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=90&w=1200',
+    location: 'Kyiv, Ukraine',
+    mainImage: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&q=80&w=1200',
     images: [
-      'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&q=90&w=1600',
-      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=90&w=1600',
+      'https://images.unsplash.com/photo-1600047509358-9dc75507daeb?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=1200',
     ],
   },
   {
     title: 'Apteka 92',
     type: 'Retail Project',
-    mainImage: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=90&w=1200',
+    location: 'International',
+    mainImage: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&q=80&w=1200',
     images: [
-      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=90&w=1600',
-      'https://images.unsplash.com/photo-1600607687126-8a3414349a51?auto=format&fit=crop&q=90&w=1600',
+      'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1600607687126-8a3414349a51?auto=format&fit=crop&q=80&w=1200',
     ],
   },
 ];
@@ -112,29 +104,50 @@ export default function App() {
   if (selectedProject !== null) {
     const project = projectData[selectedProject];
     return (
-      <div className="min-h-screen bg-[#f5f2ed] text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans animate-in fade-in duration-500">
+      <div className="min-h-screen bg-white text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans animate-in fade-in duration-700">
         <button
           onClick={scrollToWork}
-          className="flex items-center gap-3 text-[10px] uppercase tracking-[0.35em] text-black/40 mb-12 hover:text-black transition-colors duration-300"
+          className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-black/40 mb-12 hover:text-black transition-all duration-300 group"
         >
-          <ArrowLeft size={14} /> Back to Projects
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Projects
         </button>
 
         <div className="max-w-7xl mx-auto">
-          <p className="text-[10px] uppercase tracking-[0.45em] text-black/35 mb-4">{project.type}</p>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl uppercase tracking-[0.12em] font-extralight mb-12 md:mb-20">{project.title}</h1>
+          <p className="text-[10px] uppercase tracking-[0.5em] text-[#a68a71] mb-4 font-semibold">{project.type}</p>
+          <h1 className="text-4xl md:text-6xl lg:text-8xl uppercase tracking-[0.05em] font-extralight mb-12 md:mb-20 leading-tight">
+            {project.title.split(' ').map((word, i) => (
+              <span key={i} className={i % 2 !== 0 ? "italic block md:inline" : ""}>{word} </span>
+            ))}
+          </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
             {project.images.map((image, index) => (
-              <div key={index} className="overflow-hidden rounded-sm bg-black/5 aspect-[4/5] md:aspect-auto">
+              <div key={index} className={`overflow-hidden rounded-sm bg-black/5 ${index % 3 === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/5]'}`}>
                 <img
                   src={image}
                   alt={`${project.title} ${index}`}
-                  className="w-full h-full md:h-[480px] object-cover hover:scale-[1.02] transition-all duration-700"
-                  onError={(e) => { e.target.src = `https://placehold.co/600x800/EAEAEA/999999?text=${project.title}`; }}
+                  className="w-full h-full object-cover hover:scale-[1.03] transition-all duration-1000 ease-out"
                 />
               </div>
             ))}
+          </div>
+          
+          <div className="mt-24 border-t border-black/5 pt-16 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-black/40 mb-4">Location</h4>
+              <p className="text-sm tracking-widest uppercase">{project.location}</p>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-black/40 mb-4">Status</h4>
+              <p className="text-sm tracking-widest uppercase">Completed 2024</p>
+            </div>
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] text-black/40 mb-4">Share</h4>
+              <div className="flex gap-4 text-black/40">
+                <Instagram size={16} className="hover:text-black cursor-pointer" />
+                <Linkedin size={16} className="hover:text-black cursor-pointer" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -143,50 +156,51 @@ export default function App() {
 
   if (showAbout) {
     return (
-      <div className="min-h-screen bg-[#f8f5f1] text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans animate-in fade-in duration-500">
+      <div className="min-h-screen bg-white text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans animate-in fade-in duration-700">
         <button
           onClick={() => setShowAbout(false)}
-          className="flex items-center gap-3 text-[10px] uppercase tracking-[0.35em] text-black/40 mb-12 md:mb-16 hover:text-black transition-colors duration-300"
+          className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-black/40 mb-12 hover:text-black transition-all duration-300"
         >
-          <ArrowLeft size={14} /> Back to Home
+          <ArrowLeft size={14} /> Home
         </button>
 
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.8fr] gap-12 lg:gap-24 mb-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-32 mb-32 items-start">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a68a71] mb-6 font-semibold">Gokul Murali</p>
-              <h1 className="text-4xl md:text-6xl font-extralight uppercase tracking-[0.05em] leading-[1.1] mb-8">
-                Architectural Vision. <br />
-                <span className="italic font-normal text-[#a68a71]">Interior Precision.</span>
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a68a71] mb-8 font-bold">The Studio</p>
+              <h1 className="text-5xl md:text-8xl font-extralight uppercase tracking-[0.02em] leading-[0.95] mb-12">
+                Sculpting <span className="italic font-normal">Light</span> & Space.
               </h1>
-              <p className="text-[16px] md:text-[18px] leading-[1.8] text-black/70 font-light max-w-2xl">
-                A dedicated Design Professional with over four years of specialized experience, bridging the gap between technical drafting and soulful execution.
-              </p>
+              <div className="space-y-8 text-[17px] md:text-[20px] leading-[1.8] text-black/80 font-light max-w-2xl">
+                <p>
+                  Studio Aratni is an interdisciplinary architectural practice based in Kerala, focusing on the intersection of modern minimalism and regional soul.
+                </p>
+                <p className="text-black/50">
+                  Founded by Gokul Murali, we approach every project as a unique narrative—balancing the rigid demands of structure with the fluid beauty of human experience.
+                </p>
+              </div>
             </div>
-            <div className="aspect-[4/5] bg-black/5 overflow-hidden rounded-sm relative group">
+            <div className="aspect-[3/4] bg-black/5 overflow-hidden rounded-sm relative group shadow-2xl">
                 <img 
-                  src="src/assets/founder/Gokul.png" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
                   alt="Gokul Murali" 
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                  onError={(e) => { e.target.src = "https://placehold.co/600x800/EAEAEA/999999?text=Gokul+Murali"; }}
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                 />
-                <div className="absolute bottom-6 left-6 text-white text-[10px] tracking-[0.3em] uppercase bg-black/40 backdrop-blur-md px-4 py-2 font-medium">Founder & Lead Designer</div>
+                <div className="absolute bottom-8 left-8 text-white text-[10px] tracking-[0.4em] uppercase bg-black/40 backdrop-blur-xl px-6 py-3 font-medium">Lead Designer</div>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 mb-20 border-t border-black/5 pt-16">
-            <div className="space-y-6">
-              <h3 className="text-[11px] uppercase tracking-[0.4em] text-black/40">The Journey</h3>
-              <p className="text-[15px] leading-[2.2] text-black/60 font-light">
-                With a portfolio spanning over <strong className="text-black font-normal">200+ projects</strong>, I combine the structured efficiency of industry giants with the personalized care of a boutique practice.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <h3 className="text-[11px] uppercase tracking-[0.4em] text-black/40">Philosophy</h3>
-              <p className="text-[15px] leading-[2.2] text-black/60 font-light">
-                Our design language is one of quietude. We believe in stripping away the unnecessary to reveal the inherent beauty of light and local materials.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 border-t border-black/5 pt-16">
+             {[
+               { label: 'Philosophy', text: 'We believe that architecture should be felt, not just seen. Our designs prioritize the sensory experience of a space.' },
+               { label: 'Sustainability', text: 'Integrating local materials and passive cooling techniques is at the core of our constructive ethos.' },
+               { label: 'Excellence', text: 'With 200+ projects completed, our attention to detail from drafting to execution remains unrivaled.' }
+             ].map((item, i) => (
+               <div key={i}>
+                 <h3 className="text-[11px] uppercase tracking-[0.4em] text-[#a68a71] mb-6 font-bold">{item.label}</h3>
+                 <p className="text-[15px] leading-relaxed text-black/60 font-light">{item.text}</p>
+               </div>
+             ))}
           </div>
         </div>
       </div>
@@ -194,7 +208,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[#ece7e1] font-sans selection:bg-[#2d2d2a] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen w-full bg-white font-sans selection:bg-[#2d2d2a] selection:text-white overflow-x-hidden">
       <style>{`
         html { scroll-behavior: smooth; }
         @keyframes breathe {
@@ -221,10 +235,22 @@ export default function App() {
           background: #25D366;
           animation: pulse-ring 2s infinite;
         }
+        /* Sophisticated Full-Screen Menu Styles */
+        .menu-overlay {
+          clip-path: circle(0% at 95% 5%);
+          transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+          visibility: hidden;
+        }
+        .menu-overlay.active {
+          clip-path: circle(150% at 95% 5%);
+          visibility: visible;
+        }
+        .nav-link-item {
+          transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
       `}</style>
 
-      {}
-      <nav className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md border-b border-black/5 px-6 md:px-10 py-4 md:py-6 z-[100]">
+      <nav className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md border-b border-black/5 px-6 md:px-10 py-4 md:py-6 z-[200]">
         <div className="max-w-[1800px] mx-auto flex justify-between items-center">
           <div className="cursor-pointer group" onClick={closeModals}>
             <div className="text-[9px] tracking-[0.6em] font-bold text-black/50 uppercase group-hover:text-black transition-colors">Studio</div>
@@ -248,176 +274,219 @@ export default function App() {
                  <LinkedinIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
                </a>
             </div>
-            <button className="lg:hidden text-[#2d2d2a] p-2 z-[110]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {/* Three Dots Menu Trigger */}
+            <button 
+              className="text-[#2d2d2a] p-2 hover:bg-black/5 rounded-full transition-all z-[210]" 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <div className="flex gap-1"><div className="w-1 h-1 bg-current rounded-full"/><div className="w-1 h-1 bg-current rounded-full"/><div className="w-1 h-1 bg-current rounded-full"/></div>}
             </button>
           </div>
         </div>
 
-        {}
-        <div className={`lg:hidden fixed inset-0 bg-white z-[150] transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="flex flex-col h-full p-10 pt-24 text-left relative">
-            <button 
-              className="absolute top-6 right-6 text-[#2d2d2a] p-2" 
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <X size={32} strokeWidth={1.5} />
-            </button>
-
-            <div className="flex flex-col gap-8">
-              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Home</a>
-              <a href="#work" onClick={() => { setIsMenuOpen(false); scrollToWork(); }} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Portfolio</a>
-              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-left text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">About</button>
-              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Services</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Contact</a>
+        {/* Sophisticated Full-Screen Menu Overlay (The "Right Image" Style) */}
+        <div className={`fixed inset-0 bg-white z-[150] menu-overlay ${isMenuOpen ? 'active' : ''}`}>
+          <div className="h-full flex flex-col md:flex-row">
+            {/* Left Section: Navigation Links with Large Typography */}
+            <div className="flex-1 flex flex-col justify-center px-8 md:px-24 py-20 space-y-6 md:space-y-10">
+              <p className="text-[10px] uppercase tracking-[0.6em] text-black/30 font-bold mb-4">Navigate</p>
+              {[
+                { label: 'Index', action: closeModals },
+                { label: 'Portfolio', action: () => { setIsMenuOpen(false); scrollToWork(); } },
+                { label: 'Studio', action: () => { setShowAbout(true); setIsMenuOpen(false); } },
+                { label: 'Services', action: () => { setIsMenuOpen(false); document.getElementById('services').scrollIntoView(); } },
+                { label: 'Connect', action: () => { setIsMenuOpen(false); document.getElementById('contact').scrollIntoView(); } }
+              ].map((item, idx) => (
+                <button 
+                  key={idx}
+                  onClick={item.action}
+                  className="text-left text-4xl md:text-7xl lg:text-8xl font-extralight uppercase tracking-tight text-[#2d2d2a] hover:italic hover:pl-8 transition-all duration-500 group flex items-center gap-6"
+                >
+                  <span className="text-xs font-mono text-black/20 group-hover:text-[#a68a71]">0{idx+1}</span>
+                  {item.label}
+                </button>
+              ))}
             </div>
-            
-            <div className="mt-auto pb-12 flex gap-8 text-black/40">
-               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon size={24} className="hover:text-black transition-colors" /></a>
-               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"><LinkedinIcon size={24} className="hover:text-black transition-colors" /></a>
+
+            {/* Right Section: Visual/Contact Details (Desktop Only) */}
+            <div className="hidden lg:flex flex-col justify-between w-1/3 bg-[#f8f6f4] p-20 border-l border-black/5">
+              <div className="aspect-[3/4] bg-black/5 overflow-hidden rounded-sm grayscale">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" 
+                  className="w-full h-full object-cover opacity-60 hover:scale-105 transition-transform duration-1000"
+                  alt="Menu Visual"
+                />
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.5em] text-black/30 font-bold mb-2">Location</p>
+                  <p className="text-sm tracking-widest text-black/60">Alappuzha, Kerala, India</p>
+                </div>
+                <div className="flex gap-6 text-black/30">
+                  <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon size={20} className="hover:text-black transition-colors" /></a>
+                  <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"><LinkedinIcon size={20} className="hover:text-black transition-colors" /></a>
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} className="hover:text-black transition-colors" /></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {}
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="whatsapp-float group">
-        <div className="pulse-effect"></div>
-        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-lg flex items-center justify-center">
-          <WhatsAppIcon size={28} />
-          <span className="absolute right-full mr-4 bg-white text-black text-[10px] tracking-widest uppercase py-2 px-4 rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">Message Us</span>
-        </div>
-      </a>
-
-      {}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-screen w-full overflow-hidden bg-black">
         <img
-          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=2000"
+          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=90&w=2400"
           alt="Hero"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ animation: 'breathe 14s ease-in-out infinite alternate' }}
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
+          style={{ animation: 'breathe 20s ease-in-out infinite alternate' }}
         />
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-8">
-          <div className="max-w-5xl">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight uppercase tracking-[0.06em] leading-[1.25] md:leading-[1.3] max-w-[95vw] mx-auto">
-              Architecture <span className="italic">that</span> breathes.
-              <br className="hidden sm:block" />
-              Interiors <span className="italic">that</span> resonate.
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+        <div className="relative z-10 h-full flex flex-col justify-end px-6 md:px-24 pb-20 md:pb-32">
+          <div className="max-w-6xl">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-extralight uppercase tracking-tighter leading-[0.85] text-white">
+              Space <span className="italic font-normal">as</span> <br /> Emotion.
             </h1>
-            <p className="mt-8 text-[9px] md:text-[11px] tracking-[0.45em] uppercase text-white/70">
-              Rooted in Proportion & Light
-            </p>
-            <a href="#work" className="inline-block mt-12 border border-white/40 px-8 md:px-12 py-4 text-[10px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all duration-500 backdrop-blur-sm">
-              Explore Works
-            </a>
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between mt-12 gap-8">
+              <p className="text-[10px] md:text-[11px] tracking-[0.5em] uppercase text-white/50 max-w-sm leading-loose">
+                Kerala based architectural laboratory defining the future of regional minimalism.
+              </p>
+              <a href="#work" className="group flex items-center gap-6 text-white text-[10px] uppercase tracking-[0.5em] font-bold">
+                View Projects <div className="w-12 h-[1px] bg-white group-hover:w-20 transition-all duration-500" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {}
-      <section id="work" className="bg-[#f2efed] px-6 md:px-14 py-20 lg:py-32 overflow-hidden border-b border-black/5">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] items-start gap-12 lg:gap-24">
+      <section id="work" className="bg-white px-6 md:px-24 py-32 lg:py-48 overflow-hidden">
+        <div className="flex flex-col lg:flex-row justify-between items-start mb-24 gap-12">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.4em] text-black/40 mb-4">Work Selection</p>
-            <h2 className="text-3xl md:text-4xl uppercase tracking-[0.15em] font-light mb-10 text-[#2d2d2a]">Featured Projects</h2>
+            <p className="text-[10px] uppercase tracking-[0.6em] text-[#a68a71] mb-6 font-bold">Selected Projects</p>
+            <h2 className="text-4xl md:text-7xl uppercase tracking-tight font-extralight text-[#2d2d2a] leading-none">The <span className="italic">Portfolio</span> Archive</h2>
+          </div>
+          <p className="text-black/40 text-[14px] leading-relaxed max-w-xs font-light italic">
+            "We build not just structures, but vessels for light and silence."
+          </p>
+        </div>
 
-            <div className="space-y-0">
-              {projectData.map((project, index) => (
-                <div
-                  key={project.title}
-                  onMouseEnter={() => { setActiveProject(index); setHoveredProjectIdx(index); }}
-                  onMouseLeave={() => setHoveredProjectIdx(null)}
-                  onClick={() => setSelectedProject(index)}
-                  className={`group flex items-center justify-between border-b border-black/10 py-8 md:py-10 transition-all duration-500 cursor-pointer ${activeProject === index ? 'lg:pl-4 opacity-100' : 'opacity-60 hover:opacity-100'}`}
-                >
-                  <div className="flex items-center gap-6 md:gap-8">
-                    <span className="text-[11px] tracking-[0.2em] text-black/35 font-mono">0{index + 1}</span>
-                    <span className="uppercase tracking-[0.18em] text-lg md:text-[22px] font-light text-[#2d2d2a]">{project.title}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-24 items-start">
+          <div className="space-y-0 border-t border-black/10">
+            {projectData.map((project, index) => (
+              <div
+                key={project.title}
+                onMouseEnter={() => { setActiveProject(index); setHoveredProjectIdx(index); }}
+                onMouseLeave={() => setHoveredProjectIdx(null)}
+                onClick={() => setSelectedProject(index)}
+                className={`group flex items-center justify-between border-b border-black/10 py-10 md:py-16 transition-all duration-700 cursor-pointer ${activeProject === index ? 'opacity-100' : 'opacity-20 hover:opacity-50'}`}
+              >
+                <div className="flex items-center gap-12 md:gap-24">
+                  <span className="text-[11px] font-mono text-black/30">0{index + 1}</span>
+                  <div className="space-y-2">
+                    <span className="uppercase tracking-tighter text-3xl md:text-6xl font-extralight text-[#2d2d2a] block">{project.title}</span>
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-black/40 block">{project.type}</span>
                   </div>
-                  <ArrowRight size={18} className={`transition-all duration-300 ${activeProject === index ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`} />
                 </div>
-              ))}
-            </div>
-
-            <button onClick={() => { window.location.href = LINKEDIN_URL; }} className="mt-12 text-[11px] uppercase tracking-[0.4em] text-black/40 hover:text-black transition-colors underline underline-offset-8 decoration-black/10">
-              [ View Full Portfolio Archive ]
-            </button>
+                <ChevronRight size={32} strokeWidth={1} className={`transition-all duration-500 ${activeProject === index ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`} />
+              </div>
+            ))}
           </div>
 
-          <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[4/5] w-full rounded-sm bg-black/5 self-center shadow-xl">
+          <div className="sticky top-48 aspect-[3/4] w-full rounded-sm bg-black/5 overflow-hidden shadow-2xl">
              {projectData.map((p, idx) => (
                <img
                   key={idx}
-                  src={(hoveredProjectIdx === idx && p.hoverImage) ? p.hoverImage : p.mainImage}
+                  src={p.mainImage}
                   alt={p.title}
-                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${activeProject === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'}`}
-                  onError={(e) => { e.target.src = `https://placehold.co/800x1000/EAEAEA/999999?text=${p.title}`; }}
+                  className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${activeProject === idx ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-110 rotate-2 pointer-events-none'}`}
                 />
              ))}
+             <div className="absolute inset-0 bg-black/5 mix-blend-overlay" />
           </div>
         </div>
       </section>
 
       {}
-      <section id="services" className="px-6 md:px-14 py-20 md:py-32 bg-[#f5f2ed]">
-        <div className="max-w-7xl mx-auto mb-20 text-center lg:text-left">
-           <p className="text-[10px] uppercase tracking-[0.45em] text-black/40 mb-4">Core Disciplines</p>
-           <h2 className="text-3xl md:text-4xl uppercase tracking-[0.15em] font-light text-[#2d2d2a]">Services</h2>
+      <section id="services" className="px-6 md:px-24 py-32 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+           <div className="max-w-2xl">
+              <p className="text-[10px] uppercase tracking-[0.6em] text-black/40 mb-6 font-bold">Expertise</p>
+              <h2 className="text-4xl md:text-7xl uppercase tracking-tighter font-extralight text-[#2d2d2a] leading-none">Curated <span className="italic">Solutions</span></h2>
+           </div>
+           <button className="text-[11px] uppercase tracking-[0.4em] font-bold border-b border-black pb-2 hover:text-[#a68a71] hover:border-[#a68a71] transition-all">Download Services PDF</button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
           {[
-            { title: 'Modular Solutions', desc: 'Tailored kitchens and storage systems for contemporary living.', img: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80&w=800' },
-            { title: 'Bespoke Interiors', desc: 'Curated environments shaped through texture and spatial harmony.', img: 'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&q=80&w=800' },
-            { title: 'Architecture', desc: 'Contemporary residences rooted in climate and timeless materiality.', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800' },
-            { title: 'Furniture Selection', desc: 'Thoughtfully selected pieces that complement the narrative.', img: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=800' },
+            { title: 'Modular Design', desc: 'Surgical precision in kitchen and storage architecture.', num: '01' },
+            { title: 'Interior Styling', desc: 'Crafting atmospheres through materiality and light.', num: '02' },
+            { title: 'Architectural Design', num: '03', desc: 'End-to-end residential and commercial planning.' },
+            { title: 'Furniture Design', num: '04', desc: 'Custom pieces designed for specific spatial contexts.' },
           ].map((item) => (
-            <div key={item.title} className="group">
-              <div className="overflow-hidden bg-black/5 aspect-[4/3] rounded-sm mb-6">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" />
+            <div key={item.title} className="group bg-white p-12 border border-black/5 hover:bg-black hover:text-white transition-all duration-700 aspect-square flex flex-col justify-between">
+              <span className="text-xs font-mono opacity-40 group-hover:opacity-100">{item.num}</span>
+              <div>
+                <h3 className="text-lg uppercase tracking-widest mb-4 font-bold">{item.title}</h3>
+                <p className="text-[13px] leading-relaxed opacity-50 group-hover:opacity-80 font-light">{item.desc}</p>
               </div>
-              <h3 className="text-[12px] uppercase tracking-[0.25em] mb-3 text-[#2d2d2a] font-medium">{item.title}</h3>
-              <p className="text-[13px] leading-[1.8] text-black/50 font-light">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {}
-      <section id="contact" className="bg-[#f5f2ed] px-6 md:px-16 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
-          <div className="flex-1">
-            <p className="text-[10px] uppercase tracking-[0.45em] text-black/35 mb-6">Inquiry</p>
-            <h2 className="text-3xl md:text-5xl uppercase tracking-[0.1em] font-light text-[#2d2d2a] mb-12 leading-tight">Let's build <br /> something <span className="italic">timeless</span>.</h2>
-            
-            <div className="mb-12 space-y-2">
-               <p className="text-[10px] uppercase tracking-widest text-black/40">Direct Contact</p>
-               <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-light hover:text-[#a68a71] transition-colors">{CONTACT_EMAIL}</a>
+      <section id="contact" className="bg-white px-6 md:px-24 py-32 md:py-48">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32">
+          <div className="space-y-16">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.6em] text-[#a68a71] mb-8 font-bold">Collaborate</p>
+              <h2 className="text-5xl md:text-8xl uppercase tracking-tighter font-extralight text-[#2d2d2a] mb-8 leading-[0.9]">Start <br /> the <span className="italic">Dialogue</span>.</h2>
             </div>
-
-            <form className="space-y-12" action={`mailto:${CONTACT_EMAIL}`} method="GET">
-              <input type="text" name="subject" placeholder="Project Name" className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all" />
-              <textarea name="body" placeholder="Tell us about your vision..." rows={3} className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all resize-none" />
-              <button type="submit" className="group flex items-center gap-4 px-12 py-5 bg-[#2d2d2a] text-white text-[10px] uppercase tracking-[0.4em] hover:bg-black transition-all">
-                Send Message <Send size={14} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-            </form>
+            
+            <div className="space-y-12">
+              <div className="group cursor-pointer">
+                <p className="text-[10px] uppercase tracking-widest text-black/30 mb-2">Email</p>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-2xl md:text-4xl font-light tracking-tight group-hover:text-[#a68a71] transition-colors">{CONTACT_EMAIL}</a>
+              </div>
+              <div className="group cursor-pointer">
+                <p className="text-[10px] uppercase tracking-widest text-black/30 mb-2">WhatsApp</p>
+                <a href={WHATSAPP_URL} className="text-2xl md:text-4xl font-light tracking-tight group-hover:text-[#a68a71] transition-colors">+91 911 354 6232</a>
+              </div>
+            </div>
           </div>
           
-          <div className="flex-1 bg-black/5 min-h-[400px] rounded-sm relative grayscale overflow-hidden opacity-70 border border-black/5 shadow-inner">
-             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31435.23959683766!2d76.2960928!3d9.4980666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08854f7f1e0d8f%3A0xf4c9f5e4a7c2b1b7!2sAlappuzha%2C%20Kerala!5e0!3m2!1sen!2sin!4v1715583000000!5m2!1sen!2sin" className="absolute inset-0 w-full h-full border-0" loading="lazy" />
+          <div className="flex flex-col justify-center">
+            <form className="space-y-16">
+              <div className="relative group">
+                <input type="text" placeholder="Your Name" className="w-full bg-transparent border-b border-black/10 py-6 outline-none text-xl font-light placeholder:text-black/20 focus:border-black transition-all" />
+              </div>
+              <div className="relative group">
+                <input type="email" placeholder="Your Email" className="w-full bg-transparent border-b border-black/10 py-6 outline-none text-xl font-light placeholder:text-black/20 focus:border-black transition-all" />
+              </div>
+              <div className="relative group">
+                <textarea placeholder="The Vision" rows={2} className="w-full bg-transparent border-b border-black/10 py-6 outline-none text-xl font-light placeholder:text-black/20 focus:border-black transition-all resize-none" />
+              </div>
+              <button className="w-full py-8 bg-black text-white text-[11px] uppercase tracking-[0.5em] font-bold hover:bg-[#a68a71] transition-all flex items-center justify-center gap-4">
+                Submit Inquiry <Send size={16} />
+              </button>
+            </form>
           </div>
         </div>
       </section>
 
       {}
-      <footer className="bg-[#ebe6df] border-t border-black/5 px-6 md:px-16 py-16">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-[9px] uppercase tracking-[0.35em] text-black/40">
-          <div>© 2026 Studio Aratni — Kerala, India</div>
-          <div className="flex gap-10">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Instagram</a>
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">WhatsApp</a>
+      <footer className="bg-[#111] text-white/30 px-6 md:px-24 py-24">
+        <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 text-[10px] uppercase tracking-[0.5em] font-bold">
+          <div className="flex items-center gap-8">
+            <span className="text-white">Studio Aratni</span>
+            <span>© 2026</span>
+            <span>Kerala, India</span>
+          </div>
+          <div className="flex gap-12 text-white/50">
+            <a href={INSTAGRAM_URL} className="hover:text-white transition-colors">Instagram</a>
+            <a href={LINKEDIN_URL} className="hover:text-white transition-colors">LinkedIn</a>
+            <a href={WHATSAPP_URL} className="hover:text-white transition-colors">WhatsApp</a>
           </div>
         </div>
       </footer>
