@@ -93,6 +93,7 @@ export default function App() {
   const scrollToWork = () => {
     setSelectedProject(null);
     setShowAbout(false);
+    setIsMenuOpen(false);
     setTimeout(() => {
       const workSection = document.getElementById('work');
       if (workSection) {
@@ -164,9 +165,10 @@ export default function App() {
             </div>
             <div className="aspect-[4/5] bg-black/5 overflow-hidden rounded-sm relative group">
                 <img 
-                  src="watermarked_img_16867521272697192712.png" 
+                  src="src/assets/founder/Gokul.png" 
                   alt="Gokul Murali" 
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                  onError={(e) => { e.target.src = "https://placehold.co/600x800/EAEAEA/999999?text=Gokul+Murali"; }}
                 />
                 <div className="absolute bottom-6 left-6 text-white text-[10px] tracking-[0.3em] uppercase bg-black/40 backdrop-blur-md px-4 py-2 font-medium">Founder & Lead Designer</div>
             </div>
@@ -253,17 +255,24 @@ export default function App() {
         </div>
 
         {}
-        <div className={`lg:hidden fixed inset-y-0 right-0 w-full md:w-80 bg-white z-[105] shadow-2xl transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          <div className="flex flex-col h-full p-12 pt-24 text-left">
+        <div className={`lg:hidden fixed inset-0 bg-white z-[150] transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="flex flex-col h-full p-10 pt-24 text-left relative">
+            <button 
+              className="absolute top-6 right-6 text-[#2d2d2a] p-2" 
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <X size={32} strokeWidth={1.5} />
+            </button>
+
             <div className="flex flex-col gap-8">
-              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Home</a>
-              <a href="#work" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Portfolio</a>
-              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-left text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">About</button>
-              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Services</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Contact</a>
+              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Home</a>
+              <a href="#work" onClick={() => { setIsMenuOpen(false); scrollToWork(); }} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Portfolio</a>
+              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-left text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">About</button>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Services</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[32px] font-light tracking-[0.05em] uppercase text-[#2d2d2a] hover:text-[#a68a71] transition-colors">Contact</a>
             </div>
             
-            <div className="mt-auto flex gap-6 text-black/30">
+            <div className="mt-auto pb-12 flex gap-8 text-black/40">
                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon size={24} className="hover:text-black transition-colors" /></a>
                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"><LinkedinIcon size={24} className="hover:text-black transition-colors" /></a>
             </div>
