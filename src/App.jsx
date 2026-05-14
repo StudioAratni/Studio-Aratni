@@ -248,23 +248,23 @@ export default function App() {
                  <LinkedinIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
                </a>
             </div>
-            {}
+            {/* Main Toggle Button - Now the only control */}
             <button className="lg:hidden text-[#2d2d2a] p-2 relative z-[1000]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {}
+        {/* Mobile Menu Overlay */}
         <div
           className={`lg:hidden fixed top-0 left-0 w-full h-screen bg-white z-[999] transition-transform duration-500 ease-in-out ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          <div className="h-full flex flex-col px-8 pt-32 pb-12">
-            {/* Navigation */}
-            <div className="flex flex-col gap-10">
+          {}
+          <div className="h-full flex flex-col px-8 pt-24 pb-12 overflow-y-auto">
+            {/* Navigation Links */}
+            <div className="flex flex-col gap-8 md:gap-10">
               <a
                 href="#"
                 onClick={() => setIsMenuOpen(false)}
@@ -311,15 +311,15 @@ export default function App() {
               </a>
             </div>
 
-            {/* Socials */}
-            <div className="mt-auto flex items-center gap-6 pt-16">
+            {/* Socials - Moved up from the bottom for immediate visibility */}
+            <div className="mt-12 flex items-center gap-8 border-t border-black/5 pt-10">
               <a
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-black/60 hover:text-black transition"
               >
-                <InstagramIcon size={22} />
+                <InstagramIcon size={24} />
               </a>
 
               <a
@@ -328,7 +328,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="text-black/60 hover:text-black transition"
               >
-                <LinkedinIcon size={22} />
+                <LinkedinIcon size={24} />
               </a>
 
               <a
@@ -337,7 +337,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="text-black/60 hover:text-black transition"
               >
-                <WhatsAppIcon size={22} />
+                <WhatsAppIcon size={24} />
               </a>
             </div>
           </div>
