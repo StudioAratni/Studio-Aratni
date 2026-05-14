@@ -262,17 +262,7 @@ export default function App() {
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          <div className="h-full flex flex-col px-8 pt-24 pb-12">
-            {/* Close Button */}
-            <div className="flex justify-end mb-16">
-              <button
-                onClick={() => setIsMenuOpen(false)}
-                className="text-black"
-              >
-                <X size={38} strokeWidth={1.5} />
-              </button>
-            </div>
-
+          <div className="h-full flex flex-col px-8 pt-32 pb-12">
             {/* Navigation */}
             <div className="flex flex-col gap-10">
               <a
