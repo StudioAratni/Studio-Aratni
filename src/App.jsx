@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ArrowLeft, Layers, Home, Building2, Ruler } from 'lucide-react';
+import { Menu, X, ArrowRight, ArrowLeft, Send } from 'lucide-react';
 
 const InstagramIcon = ({ size = 16, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -17,9 +17,9 @@ const LinkedinIcon = ({ size = 16, className = "" }) => (
   </svg>
 );
 
-const FacebookIcon = ({ size = 16, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+const WhatsAppIcon = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 );
 
@@ -81,25 +81,39 @@ const projectData = [
 export default function App() {
   const [activeProject, setActiveProject] = useState(0);
   const [hoveredProjectIdx, setHoveredProjectIdx] = useState(null);
-  const [showArchive, setShowArchive] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const INSTAGRAM_URL = "https://www.instagram.com/studio_aratni/";
+  const LINKEDIN_URL = "https://www.linkedin.com/in/ar-gokul-murali-3065591a5/";
+  const WHATSAPP_URL = "https://wa.me/919113546232";
+  const CONTACT_EMAIL = "gokul.m.1798@gmail.com";
+
+  const scrollToWork = () => {
+    setSelectedProject(null);
+    setShowAbout(false);
+    setTimeout(() => {
+      const workSection = document.getElementById('work');
+      if (workSection) {
+        workSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   const closeModals = () => {
     setShowAbout(false);
-    setShowArchive(false);
     setSelectedProject(null);
     setIsMenuOpen(false);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (selectedProject !== null) {
     const project = projectData[selectedProject];
     return (
-      <div className="min-h-screen bg-[#f5f2ed] text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans">
+      <div className="min-h-screen bg-[#f5f2ed] text-[#2d2d2a] px-6 md:px-16 py-12 md:py-24 font-sans animate-in fade-in duration-500">
         <button
-          onClick={() => setSelectedProject(null)}
+          onClick={scrollToWork}
           className="flex items-center gap-3 text-[10px] uppercase tracking-[0.35em] text-black/40 mb-12 hover:text-black transition-colors duration-300"
         >
           <ArrowLeft size={14} /> Back to Projects
@@ -185,6 +199,26 @@ export default function App() {
           0% { transform: scale(1.02); }
           100% { transform: scale(1.06); }
         }
+        @keyframes pulse-ring {
+          0% { transform: scale(.8); opacity: 0.5; }
+          100% { transform: scale(1.3); opacity: 0; }
+        }
+        .whatsapp-float {
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          z-index: 1000;
+          transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: translateY(-5px); }
+        .pulse-effect {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background: #25D366;
+          animation: pulse-ring 2s infinite;
+        }
       `}</style>
 
       {}
@@ -205,8 +239,12 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <div className="hidden md:flex gap-3 text-black/40">
-               <InstagramIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
-               <LinkedinIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
+               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                 <InstagramIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
+               </a>
+               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                 <LinkedinIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
+               </a>
             </div>
             <button className="lg:hidden text-[#2d2d2a] p-2 z-[110]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -215,32 +253,32 @@ export default function App() {
         </div>
 
         {}
-        <div className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl z-[105] transition-transform duration-700 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          {/* Close button aligned to the top right burger position */}
-          <div className="absolute top-4 right-6 md:right-10 py-4 md:py-6">
-             <button className="text-[#2d2d2a] p-2" onClick={() => setIsMenuOpen(false)}>
-               <X size={28} strokeWidth={1.5} />
-             </button>
-          </div>
-
-          <div className="flex flex-col items-center justify-center h-full gap-12 px-8">
-            <div className="flex flex-col items-center gap-10">
-              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Home</a>
-              <a href="#work" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Work</a>
-              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Services</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Contact</a>
-              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">About</button>
+        <div className={`lg:hidden fixed inset-y-0 right-0 w-full md:w-80 bg-white z-[105] shadow-2xl transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+          <div className="flex flex-col h-full p-12 pt-24 text-left">
+            <div className="flex flex-col gap-8">
+              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Home</a>
+              <a href="#work" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Portfolio</a>
+              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-left text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">About</button>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Services</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[28px] font-light tracking-[0.05em] uppercase hover:text-[#a68a71] transition-colors">Contact</a>
             </div>
             
-            {/* Social Icons matching the layout in the screenshot */}
-            <div className="flex gap-12 mt-8 text-black/30">
-               <InstagramIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
-               <LinkedinIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
-               <FacebookIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
+            <div className="mt-auto flex gap-6 text-black/30">
+               <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"><InstagramIcon size={24} className="hover:text-black transition-colors" /></a>
+               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"><LinkedinIcon size={24} className="hover:text-black transition-colors" /></a>
             </div>
           </div>
         </div>
       </nav>
+
+      {}
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="whatsapp-float group">
+        <div className="pulse-effect"></div>
+        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-lg flex items-center justify-center">
+          <WhatsAppIcon size={28} />
+          <span className="absolute right-full mr-4 bg-white text-black text-[10px] tracking-widest uppercase py-2 px-4 rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">Message Us</span>
+        </div>
+      </a>
 
       {}
       <section className="relative h-screen w-full overflow-hidden">
@@ -293,12 +331,12 @@ export default function App() {
               ))}
             </div>
 
-            <button onClick={() => setShowArchive(true)} className="mt-12 text-[11px] uppercase tracking-[0.4em] text-black/40 hover:text-black transition-colors underline underline-offset-8 decoration-black/10">
-              [ View Portfolio Archive ]
+            <button onClick={() => { window.location.href = LINKEDIN_URL; }} className="mt-12 text-[11px] uppercase tracking-[0.4em] text-black/40 hover:text-black transition-colors underline underline-offset-8 decoration-black/10">
+              [ View Full Portfolio Archive ]
             </button>
           </div>
 
-          <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[4/5] w-full rounded-sm bg-black/5 self-center">
+          <div className="relative overflow-hidden aspect-[4/3] lg:aspect-[4/5] w-full rounded-sm bg-black/5 self-center shadow-xl">
              {projectData.map((p, idx) => (
                <img
                   key={idx}
@@ -342,14 +380,22 @@ export default function App() {
           <div className="flex-1">
             <p className="text-[10px] uppercase tracking-[0.45em] text-black/35 mb-6">Inquiry</p>
             <h2 className="text-3xl md:text-5xl uppercase tracking-[0.1em] font-light text-[#2d2d2a] mb-12 leading-tight">Let's build <br /> something <span className="italic">timeless</span>.</h2>
-            <form className="space-y-12">
-              <input type="text" placeholder="Name" className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all" />
-              <input type="email" placeholder="Email" className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all" />
-              <textarea placeholder="Message" rows={3} className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all resize-none" />
-              <button className="px-12 py-5 bg-[#2d2d2a] text-white text-[10px] uppercase tracking-[0.4em] hover:bg-black transition-all">Submit Request</button>
+            
+            <div className="mb-12 space-y-2">
+               <p className="text-[10px] uppercase tracking-widest text-black/40">Direct Contact</p>
+               <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-light hover:text-[#a68a71] transition-colors">{CONTACT_EMAIL}</a>
+            </div>
+
+            <form className="space-y-12" action={`mailto:${CONTACT_EMAIL}`} method="GET">
+              <input type="text" name="subject" placeholder="Project Name" className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all" />
+              <textarea name="body" placeholder="Tell us about your vision..." rows={3} className="w-full bg-transparent border-b border-black/10 pb-4 outline-none text-[11px] uppercase tracking-[0.2em] placeholder:text-black/30 focus:border-black/40 transition-all resize-none" />
+              <button type="submit" className="group flex items-center gap-4 px-12 py-5 bg-[#2d2d2a] text-white text-[10px] uppercase tracking-[0.4em] hover:bg-black transition-all">
+                Send Message <Send size={14} className="group-hover:translate-x-1 transition-transform" />
+              </button>
             </form>
           </div>
-          <div className="flex-1 bg-black/5 min-h-[400px] rounded-sm relative grayscale overflow-hidden opacity-70">
+          
+          <div className="flex-1 bg-black/5 min-h-[400px] rounded-sm relative grayscale overflow-hidden opacity-70 border border-black/5 shadow-inner">
              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31435.23959683766!2d76.2960928!3d9.4980666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b08854f7f1e0d8f%3A0xf4c9f5e4a7c2b1b7!2sAlappuzha%2C%20Kerala!5e0!3m2!1sen!2sin!4v1715583000000!5m2!1sen!2sin" className="absolute inset-0 w-full h-full border-0" loading="lazy" />
           </div>
         </div>
@@ -358,11 +404,11 @@ export default function App() {
       {}
       <footer className="bg-[#ebe6df] border-t border-black/5 px-6 md:px-16 py-16">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-[9px] uppercase tracking-[0.35em] text-black/40">
-          <div>© 2026 Studio Aratni — All Rights Reserved</div>
+          <div>© 2026 Studio Aratni — Kerala, India</div>
           <div className="flex gap-10">
-            <a href="#" className="hover:text-black transition-colors">Instagram</a>
-            <a href="#" className="hover:text-black transition-colors">LinkedIn</a>
-            <a href="#" className="hover:text-black transition-colors underline underline-offset-4">Privacy</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">Instagram</a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">WhatsApp</a>
           </div>
         </div>
       </footer>
