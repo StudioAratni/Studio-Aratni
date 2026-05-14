@@ -215,17 +215,28 @@ export default function App() {
         </div>
 
         {}
-        <div className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl z-[105] transition-all duration-500 ease-in-out ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}>
-          <div className="flex flex-col items-center justify-center h-full gap-8 text-[13px] uppercase tracking-[0.45em] text-black/60 font-medium">
-            <a href="#" onClick={() => setIsMenuOpen(false)} className="hover:text-black">Home</a>
-            <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="uppercase hover:text-black">About</button>
-            <a href="#work" onClick={() => setIsMenuOpen(false)} className="hover:text-black">Work</a>
-            <a href="#services" onClick={() => setIsMenuOpen(false)} className="hover:text-black">Services</a>
-            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="hover:text-black">Contact</a>
-            <div className="flex gap-10 mt-12 text-black/40">
-               <InstagramIcon size={22} className="hover:text-black" />
-               <LinkedinIcon size={22} className="hover:text-black" />
-               <FacebookIcon size={22} className="hover:text-black" />
+        <div className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-xl z-[105] transition-transform duration-700 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          {/* Close button aligned to the top right burger position */}
+          <div className="absolute top-4 right-6 md:right-10 py-4 md:py-6">
+             <button className="text-[#2d2d2a] p-2" onClick={() => setIsMenuOpen(false)}>
+               <X size={28} strokeWidth={1.5} />
+             </button>
+          </div>
+
+          <div className="flex flex-col items-center justify-center h-full gap-12 px-8">
+            <div className="flex flex-col items-center gap-10">
+              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Home</a>
+              <a href="#work" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Work</a>
+              <a href="#services" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Services</a>
+              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">Contact</a>
+              <button onClick={() => { setShowAbout(true); setIsMenuOpen(false); }} className="text-[14px] uppercase tracking-[0.8em] text-black/80 hover:text-black transition-colors">About</button>
+            </div>
+            
+            {/* Social Icons matching the layout in the screenshot */}
+            <div className="flex gap-12 mt-8 text-black/30">
+               <InstagramIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
+               <LinkedinIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
+               <FacebookIcon size={24} strokeWidth={1.5} className="hover:text-black transition-colors" />
             </div>
           </div>
         </div>
