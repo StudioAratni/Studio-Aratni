@@ -248,6 +248,7 @@ export default function App() {
                  <LinkedinIcon size={16} className="hover:text-black cursor-pointer transition-colors" />
                </a>
             </div>
+            {}
             <button className="lg:hidden text-[#2d2d2a] p-2 relative z-[1000]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -255,15 +256,13 @@ export default function App() {
         </div>
 
         {/* Mobile Menu */}
+        {}
         <div
-          className={`lg:hidden fixed inset-0 bg-white z-[999] transition-all duration-500 ease-in-out ${
-            isMenuOpen
-              ? 'opacity-100 translate-y-0 pointer-events-auto'
-              : 'opacity-0 -translate-y-full pointer-events-none'
+          className={`lg:hidden fixed top-0 left-0 w-full h-screen bg-white z-[999] transition-transform duration-500 ease-in-out ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           <div className="h-full flex flex-col px-8 pt-24 pb-12">
-
             {/* Close Button */}
             <div className="flex justify-end mb-16">
               <button
@@ -366,10 +365,11 @@ export default function App() {
 
       {/* Hero Section */}
       <section className="relative h-screen w-full">
+        {}
         <img
           src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=2000"
           alt="Hero"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
           style={{ animation: 'breathe 14s ease-in-out infinite alternate' }}
         />
         <div className="absolute inset-0 bg-black/45" />
